@@ -217,7 +217,7 @@ private static void printLines(String randomWord)
     int index = random.Next(wordDictionary.Count);
     String randomWord = wordDictionary[index];
 
-    foreach (char x in randomWord)
+    foreach (char c in randomWord)
     {
         Console.Write("_ ");
     }
