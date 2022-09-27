@@ -6,11 +6,11 @@ using System.Collections.Generic;
 namespace Hangman
 {
 
-    internal class Program
+     class Program
     {
 
 
-        static void PrintHangman(int wrong)
+     static void PrintHangman(int wrong)
 {
     if (wrong == 0)
     {
@@ -54,7 +54,7 @@ namespace Hangman
     }
     else if (wrong == 5)
     {
-        Console.WriteLine("\n+---+");
+        Console.WriteLine("\n+----+");
         Console.WriteLine(" O   |");
         Console.WriteLine("/|\\  |");
         Console.WriteLine(" |   |");
@@ -71,7 +71,7 @@ namespace Hangman
     }
     else if (wrong == 7)
     {
-        Console.WriteLine("\n+----+");
+        Console.WriteLine("\n+-----+");
         Console.WriteLine("  O   |");
         Console.WriteLine(" /|\\  |");
         Console.WriteLine("  |   |");
@@ -81,7 +81,7 @@ namespace Hangman
     }
     else if (wrong == 8)
     {
-        Console.WriteLine("\n+----+");
+        Console.WriteLine("\n+-----+");
         Console.WriteLine("  O   |");
         Console.WriteLine(" /|\\  |");
         Console.WriteLine("  |   |");
@@ -91,15 +91,26 @@ namespace Hangman
     }
     else if (wrong == 9)
     {
-        Console.WriteLine("\n+----+");
+        Console.WriteLine("\n+-----+");
         Console.WriteLine("  O   |");
         Console.WriteLine(" /|\\  |");
+        Console.WriteLine("  |   |");
         Console.WriteLine(" / \\  |");
         Console.WriteLine("/   \\ |");
         Console.WriteLine("    ===");
     }
-  
-    return;
+    else if (wrong == 10)
+            {
+                Console.WriteLine("\n+-----+");
+                Console.WriteLine("  O   |");
+                Console.WriteLine(" ---- |");
+                Console.WriteLine(" /|\\  |");
+                Console.WriteLine("  |   |");
+                Console.WriteLine(" / \\  |");
+                Console.WriteLine("/   \\ |");
+                Console.WriteLine("    ===");
+            }
+            return;
 }
 //        static void Main(string[] args)
 //        {
@@ -124,13 +135,13 @@ private static int printWord(List<char> guessedLetters, String randomWord)
         if (guessedLetters.Contains(c))
         {
             Console.Write(c + " ");
-            rightLetters += 1;
+            rightLetters ++;
         }
         else
         {
             Console.Write("  ");
         }
-        counter += 1;
+        counter ++;
     }
     //Console.Write("\r\n");
     return rightLetters;
@@ -145,14 +156,63 @@ private static void printLines(String randomWord)
         Console.Write("\u0305 ");
     }
 }
+        // Restart or Exit
+        static void Restart()
+        {
+            try
+            {
+                Console.Write("restart? (y/n): ");
 
-static void Main(string[] args)
-{
-    Console.WriteLine("Welcome to hangman :)");
+                char restart_input = Convert.ToChar(Console.ReadLine().ToLower());
+
+                if (restart_input == 'y')
+                {
+
+                    Console.Clear();
+                }
+
+                else if (restart_input == 'n')
+                {
+                    Console.Write("\n Press any key to exit");
+                    Console.ReadKey();
+                    System.Environment.Exit(0);
+                  
+                    
+                }
+
+                else if (restart_input != 'y' && restart_input != 'n')
+                {
+                    Console.WriteLine("\ninvalid input");
+                    Restart();
+
+
+                }
+
+            }
+
+            catch (Exception e)
+            {
+                Console.Write("\n" + e);
+                Restart();
+            }
+
+        }
+
+
+
+
+
+
+        static void Main(string[] args)
+    {
+          while(true)
+            {
+
+                Console.WriteLine("Welcome to hangman");
     Console.WriteLine("-----------------------------------------");
-
+    
     Random random = new Random();
-    List<string> wordDictionary = new List<string> { "sunflower", "house", "diamond", "memes", "yeet", "hello", "howdy", "like", "subscribe" };
+    List<string> wordDictionary = new List<string> { "sunflower", "house" };
     int index = random.Next(wordDictionary.Count);
     String randomWord = wordDictionary[index];
 
@@ -166,7 +226,7 @@ static void Main(string[] args)
     List<char> currentLettersGuessed = new List<char>();
     int currentLettersRight = 0;
 
-    while (amountOfTimesWrong != 6 && currentLettersRight != lengthOfWordToGuess)
+    while (amountOfTimesWrong != 10 && currentLettersRight != lengthOfWordToGuess)
     {
         Console.Write("\nLetters guessed so far: ");
         foreach (char letter in currentLettersGuessed)
@@ -199,7 +259,9 @@ static void Main(string[] args)
                 currentLettersRight = printWord(currentLettersGuessed, randomWord);
                 Console.Write("\r\n");
                 printLines(randomWord);
-            }
+              
+                    }
+                    
             // User was wrong af
             else
             {
@@ -211,13 +273,33 @@ static void Main(string[] args)
                 currentLettersRight = printWord(currentLettersGuessed, randomWord);
                 Console.Write("\r\n");
                 printLines(randomWord);
+                
             }
         }
-    }
-    Console.WriteLine("\r\nGame is over! Thank you for playing :)");
+            }
+            
+            if (currentLettersRight == randomWord.Length)
+                {
+                Console.WriteLine("\r\n");
+                Console.WriteLine("You Win! word was '{0}'", randomWord);
+                }
+                else
+                {
+                    Console.WriteLine("\r\n");
+                    Console.WriteLine("You lost! word was '{0}'", randomWord);
+                }
+                
+                Console.WriteLine("\r\nGame is over! Thank you for playing");
+                Restart();
+
+
+            }
+
+        }
+        }
 }
-    }
-}
+
+
 
 //foreach (string item in strArr)
 //{
