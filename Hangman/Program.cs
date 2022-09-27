@@ -130,7 +130,7 @@ private static int printWord(List<char> guessedLetters, String randomWord)
     int counter = 0;
     int rightLetters = 0;
     Console.Write("\r\n");
-    foreach (char c in randomWord)
+    foreach (var c in randomWord)
     {
         if (guessedLetters.Contains(c))
         {
@@ -150,10 +150,11 @@ private static int printWord(List<char> guessedLetters, String randomWord)
 private static void printLines(String randomWord)
 {
     Console.Write("\r");
-    foreach (char c in randomWord)
+    foreach (var c in randomWord)
     {
         Console.OutputEncoding = System.Text.Encoding.Unicode;
-        Console.Write("\u0305 ");
+                // OVERLINE
+                Console.Write("\u0305 ");
     }
 }
         // Restart or Exit
