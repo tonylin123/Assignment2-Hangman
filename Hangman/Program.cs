@@ -103,7 +103,7 @@ namespace Hangman
             {
                 Console.WriteLine("\n+-----+");
                 Console.WriteLine("  O   |");
-                Console.WriteLine(" ---- |");
+                Console.WriteLine("------|");
                 Console.WriteLine(" /|\\  |");
                 Console.WriteLine("  |   |");
                 Console.WriteLine(" / \\  |");
@@ -212,7 +212,7 @@ private static void printLines(String randomWord)
     Console.WriteLine("-----------------------------------------");
     
     Random random = new Random();
-    List<string> wordDictionary = new List<string> { "sunflower", "house" };
+    List<string> wordDictionary = new List<string> { "pen", "house", "test", "book", "dog", "cat", "monday", "tony", "tuesday", "dictionary" };
     int index = random.Next(wordDictionary.Count);
     String randomWord = wordDictionary[index];
 
@@ -265,7 +265,7 @@ private static void printLines(String randomWord)
             // User was wrong af
             else
             {
-                amountOfTimesWrong += 1;
+                amountOfTimesWrong ++;
                 currentLettersGuessed.Add(letterGuessed);
                 // Update the drawing
                 PrintHangman(amountOfTimesWrong);
