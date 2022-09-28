@@ -232,16 +232,20 @@ private static void printLines(String randomWord)
     while (amountOfTimesWrong != 10 && currentLettersRight != lengthOfWordToGuess)
     {
         Console.Write("\nLetters guessed so far: ");
-        foreach (char letter in currentLettersGuessed)
+        foreach (var letter in currentLettersGuessed)
         {
             Console.Write(letter + " ");
         }
+
         // Prompt user for input
         Console.Write("\nGuess a letter: ");
-        char letterGuessed = Console.ReadLine()[0];
-        // Check if that letter has already been guessed
-        if (currentLettersGuessed.Contains(letterGuessed))
-        {
+               
+             char letterGuessed = Console.ReadLine()[lengthOfWordToGuess];
+
+                    
+                    // Check if that letter has already been guessed
+           if (currentLettersGuessed.Contains(letterGuessed))
+         {
             Console.Write("\r\n You have already guessed this letter");
            PrintHangman(amountOfTimesWrong);
             currentLettersRight = printWord(currentLettersGuessed, randomWord);
