@@ -9,7 +9,7 @@ namespace Hangman
      class Program
     {
 
-
+      //draw a hangman
      static void PrintHangman(int wrong)
 {
     if (wrong == 0)
@@ -131,7 +131,8 @@ private static int printWord(List<char> guessedLetters, String randomWord)
     int rightLetters = 0;
     Console.Write("\r\n");
     foreach (var c in randomWord)
-    {
+    {    
+         //check guessed letter in the randomword string use contains function.
         if (guessedLetters.Contains(c))
         {
             Console.Write(c + " ");
@@ -153,7 +154,7 @@ private static void printLines(String randomWord)
     foreach (var c in randomWord)
     {
         Console.OutputEncoding = System.Text.Encoding.Unicode;
-                // OVERLINE
+                // dashline
                 Console.Write("\u0305 ");
     }
 }
@@ -215,6 +216,7 @@ private static void printLines(String randomWord)
     Random random = new Random();
     List<string> wordDictionary = new List<string> { "pen", "house", "test", "book", "dog", "cat", "monday", "tony", "tuesday", "dictionary" };
     int index = random.Next(wordDictionary.Count);
+      // create a randdomword         
     String randomWord = wordDictionary[index];
 
     foreach (char c in randomWord)
@@ -263,7 +265,7 @@ private static void printLines(String randomWord)
               
                     }
                     
-            // User was wrong af
+            // User was wrong 
             else
             {
                 amountOfTimesWrong ++;
@@ -278,19 +280,21 @@ private static void printLines(String randomWord)
             }
         }
             }
-            
+            //win
             if (currentLettersRight == randomWord.Length)
                 {
                 Console.WriteLine("\r\n");
                 Console.WriteLine("You Win! word was '{0}'", randomWord);
                 }
+            //lost
                 else
                 {
                     Console.WriteLine("\r\n");
                     Console.WriteLine("You lost! word was '{0}'", randomWord);
                 }
                 
-                Console.WriteLine("\r\nGame is over! Thank you for playing");
+                Console.WriteLine("\r\n Thank you for playing");
+                
                 Restart();
 
 
