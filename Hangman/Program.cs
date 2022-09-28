@@ -238,7 +238,7 @@ private static void printLines(String randomWord)
         }
         // Prompt user for input
         Console.Write("\nGuess a letter: ");
-        char letterGuessed = Console.ReadLine()[0];
+        char letterGuessed = (Console.ReadLine().ToCharArray()[0]);
         // Check if that letter has already been guessed
         if (currentLettersGuessed.Contains(letterGuessed))
         {
